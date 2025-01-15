@@ -3,8 +3,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
+const PORT = 3000;
 
-app.get('/api/wb&kurir', async (req, res) => {
+app.use(express.json());
+
+app.get('/api', async (req, res) => {
     try {
         const wb = req.query.wb;         // Waybill (Resi)
         const kurir = req.query.kurir;   // Courier (Kurir)
@@ -86,4 +89,6 @@ app.get('/api/wb&kurir', async (req, res) => {
     }
 });
 
-module.exports = app;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
